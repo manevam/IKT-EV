@@ -1,6 +1,7 @@
 package com.ikt.event.management.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Event extends BaseEntity{
@@ -29,15 +31,6 @@ public class Event extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "coordinator_id")
-    Person coordinator;
+    User coordinator;
 
-    public Event(String name, String venue, LocalDate event_date, String eventType, Integer budget, Company company, Person coordinator) {
-        this.name = name;
-        this.venue = venue;
-        this.date = event_date;
-        this.eventType = eventType;
-        this.budget = budget;
-        this.company = company;
-        this.coordinator = coordinator;
-    }
 }

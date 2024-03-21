@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Person extends BaseEntity{
+@Table(name = "_user")
+public class User extends BaseEntity{
     @Column(nullable = false)
     @Getter
     String name;
@@ -30,12 +30,5 @@ public class Person extends BaseEntity{
             name = "has_role",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    List<Role> rolesPersonHas;
-
-    public Person(String personName, String personEmail, String phoneNumber) {
-        rolesPersonHas = new ArrayList<>();
-        this.name = personName;
-        this.email = personEmail;
-        this.phone_number = phoneNumber;
-    }
+    List<Role> rolesUserHas;
 }

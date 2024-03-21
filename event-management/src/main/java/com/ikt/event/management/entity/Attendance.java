@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Attendance extends BaseEntity{
 
     @ManyToOne
@@ -16,15 +17,10 @@ public class Attendance extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
-    Person personAttended;
+    User personAttended;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     Event eventAttended;
 
-    public Attendance(Role attendedAsRole, Person personAttended, Event eventAttended) {
-        this.attendedAsRole = attendedAsRole;
-        this.personAttended = personAttended;
-        this.eventAttended = eventAttended;
-    }
 }
