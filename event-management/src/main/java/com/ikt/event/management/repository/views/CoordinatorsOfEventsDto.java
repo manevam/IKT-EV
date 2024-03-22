@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoordinatorsOfEventsView {
+public class CoordinatorsOfEventsDto {
     private Long coordinatorId;
     private String coordinatorName;
     private Long companyId;

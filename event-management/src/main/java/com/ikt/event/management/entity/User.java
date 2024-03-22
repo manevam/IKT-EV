@@ -28,7 +28,7 @@ public class User extends BaseEntity{
     @ManyToMany
     @JoinTable(
             name = "has_role",
-            joinColumns = @JoinColumn(name = "person_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<Role> rolesUserHas;
 }

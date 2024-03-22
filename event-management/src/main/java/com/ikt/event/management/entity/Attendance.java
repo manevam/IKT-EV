@@ -16,7 +16,7 @@ public class Attendance extends BaseEntity{
     Role attendedAsRole;
 
     @ManyToOne
-    @JoinColumn(name = "person_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     User personAttended;
 
     @ManyToOne

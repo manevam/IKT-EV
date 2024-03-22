@@ -30,7 +30,7 @@ public class Event extends BaseEntity{
     Company company;
 
     @ManyToOne
-    @JoinColumn(name = "coordinator_id")
+    @JoinColumn(name = "user_coordinator_id")
     User coordinator;
 
 }

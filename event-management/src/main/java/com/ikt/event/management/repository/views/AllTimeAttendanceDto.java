@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AllTimeAttendanceView {
+public class AllTimeAttendanceDto {
     private String name;
     private Long totalAttendance;
 }
