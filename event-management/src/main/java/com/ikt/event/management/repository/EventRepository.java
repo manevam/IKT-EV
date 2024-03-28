@@ -1,6 +1,7 @@
 package com.ikt.event.management.repository;
 
 import com.ikt.event.management.entity.Event;
+import com.ikt.event.management.repository.views.CoordinatorsOfEventsDto;
 import com.ikt.event.management.repository.views.EventAttendanceDto;
 import com.ikt.event.management.repository.views.NumberOfEventsPerCompanyDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,4 +41,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "GROUP BY c.name, MONTH(e.date), YEAR(e.date) " +
             "ORDER BY MONTH(e.date) DESC")
     List<NumberOfEventsPerCompanyDto> getNumberOfEventsPerCompanyReport();
+
+    //For the getAllCoordinators method in the event controller
+    @Query("SELECT NEW com.ikt.event.management.repository.views.CoordinatorsOfEventsDto(u.id, u.name, c.id, e.id, e.name, c.name) " +
+            "FROM User u " +
+            "JOIN Event e ON u.id = e.coordinator.id " +
+            "JOIN Company c ON e.company.name = c.name")
+    List<CoordinatorsOfEventsDto> getAllCoordinators();
 }

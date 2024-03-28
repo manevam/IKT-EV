@@ -8,6 +8,8 @@ import com.ikt.event.management.entity.exceptions.InvalidPersonIdException;
 import com.ikt.event.management.repository.CompanyRepository;
 import com.ikt.event.management.repository.EventRepository;
 import com.ikt.event.management.repository.UserRepository;
+import com.ikt.event.management.repository.views.CoordinatorsOfEventsDto;
+import com.ikt.event.management.repository.views.EventAttendanceDto;
 import com.ikt.event.management.repository.views.NumberOfEventsPerCompanyDto;
 import com.ikt.event.management.service.AttendanceService;
 import com.ikt.event.management.service.EventService;
@@ -58,5 +60,16 @@ public class EventServiceImpl implements EventService {
         }
         return reports;
     }
+
+    @Override
+    public List<EventAttendanceDto> findEventAttendanceByEventId(Long eventId) {
+        return eventRepository.findEventAttendanceViewByEventId(eventId);
+    }
+
+    @Override
+    public List<CoordinatorsOfEventsDto> findAllCoordinators() {
+        return eventRepository.getAllCoordinators();
+    }
+
 }
 
