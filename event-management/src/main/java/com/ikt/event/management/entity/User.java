@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @NoArgsConstructor
@@ -31,4 +32,11 @@ public class User extends BaseEntity{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<Role> rolesUserHas;
+
+    public User(String userName, String userEmail, String phoneNumber) {
+        rolesUserHas = new ArrayList<>();
+        this.name = userName;
+        this.email = userEmail;
+        this.phone_number = phoneNumber;
+    }
 }
