@@ -27,6 +27,14 @@ const users = (props) => {
                         </tbody>
                     </table>
                 </div>
+                <div className="col mb-3">
+                    <div className="row">
+                        <div className="col-sm-12 col-md-12">
+                            <Link to={"/users/add"} className={"btn btn-block btn-success"}>Add new person</Link>
+                            <Link to={"/"} className={"btn btn-block btn-primary ms-3"}>Back</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
