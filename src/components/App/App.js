@@ -42,13 +42,15 @@ class App extends Component {
 
   fetchData = () => {
     this.loadUsers();
+    this.loadCompanies();
   }
 
   loadUsers = () => {
     UserService.getUsers()
       .then((data) => {
         this.setState({
-          users: data.data
+          users: data.data,
+          companies: data.data
         })
       });
   }
@@ -68,8 +70,8 @@ class App extends Component {
         });
   }
 
-  addCompany = (companyName, companyEmail, phoneNumber) => {
-    CompanyService.addCompany(companyName, companyEmail, phoneNumber)
+  addCompany = (companyName, companyEmail) => {
+    CompanyService.addCompany(companyName, companyEmail)
         .then(() => {
           this.loadCompanies();
         })

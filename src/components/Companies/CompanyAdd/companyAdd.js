@@ -7,8 +7,7 @@ const CompanyAdd = (props) => {
 
     const [formData, updateFormData] = React.useState({
         "companyName": "",
-        "companyEmail": "",
-        "phoneNumber": "",
+        "companyEmail": ""
        
     })
 
@@ -23,9 +22,8 @@ const CompanyAdd = (props) => {
         e.preventDefault();
         const companyName = formData.companyName;
         const companyEmail = formData.companyEmail;
-        const phoneNumber = formData.phoneNumber;
        
-        props.onAddCompany(companyName, companyEmail, phoneNumber);
+        props.onAddCompany(companyName, companyEmail);
         navigate("/companies");
     }
 
@@ -45,27 +43,6 @@ const CompanyAdd = (props) => {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="companyEmail">Email</label>
-                        <input type="text"
-                            className="form-control"
-                            id="companyEmail"
-                            name="companyEmail"
-                            required
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                        <input type="text"
-                            className="form-control"
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            required
-                            onChange={handleChange}
-                        />
-                    </div>
 
                     <button id="submit" type="submit" className="btn btn-success mt-3">Add New Company</button>
                 </form>
