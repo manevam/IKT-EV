@@ -17,7 +17,7 @@ const users = (props) => {
                         <tbody>
                             {props.users.map((term) => {
                                 return (
-                                    <tr>
+                                    <tr key={term.id}>
                                         <td>{term.id}</td>
                                         <td>{term.name}</td>
                                         <td>{term.email}</td>
