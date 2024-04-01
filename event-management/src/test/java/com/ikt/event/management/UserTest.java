@@ -86,6 +86,6 @@ public class UserTest {
 
 
 
-    // Add more tests for other columns, associations, and validations as needed
+    
 }
 
