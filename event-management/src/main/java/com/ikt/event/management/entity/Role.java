@@ -19,4 +19,11 @@ public class Role extends BaseEntity{
 
     @ManyToMany(mappedBy = "rolesUserHas")
     List<User> peopleWithThisRole;
+    
+public Role(String description, String roleType) {
+        this.description = description;
+        this.roleType = roleType;
+        this.peopleWithThisRole = new ArrayList<>();
+    }
+
 }
