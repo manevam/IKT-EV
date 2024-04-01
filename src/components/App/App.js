@@ -3,8 +3,11 @@ import React, { Component } from "react";
 import Users from '../Users/UserList/users';
 import UserAdd from '../Users/UserAdd/userAdd';
 import UserService from '../../services/userService';
+import CompanyService from '../../services/companiesService';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from '../Header/header';
+import Companies from '../Companies/CompanyList/companies';
+import CompanyAdd from '../Companies/CompanyAdd/companyAdd';
 
 class App extends Component {
 
@@ -24,6 +27,8 @@ class App extends Component {
             <Routes>
               <Route path={"/users/add"} element={<UserAdd userAdd={this.state.users} onAddUser={this.addUser} />} />
               <Route path={"/users"} element={<Users users={this.state.users} />} />
+              <Route path={"/companies/add"} element={<CompanyAdd companyAdd={this.state.companies} onAddCompany={this.addCompany} />} />
+              <Route path={"/companies"} element={<Companies companies={this.state.companies} />} />
             </Routes>
           </div>
         </main>
@@ -53,6 +58,21 @@ class App extends Component {
       .then(() => {
         this.loadUsers();
       })
+  }
+  loadCompanies = () => {
+    CompanyService.getCompanies()
+        .then((data) => {
+          this.setState({
+            companies: data.data
+          })
+        });
+  }
+
+  addCompany = (companyName, companyEmail, phoneNumber) => {
+    CompanyService.addCompany(companyName, companyEmail, phoneNumber)
+        .then(() => {
+          this.loadCompanies();
+        })
   }
 
 }
