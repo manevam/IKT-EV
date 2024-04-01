@@ -67,6 +67,16 @@ const UserAdd = (props) => {
                         />
                     </div>
 
+                    <div className="form-group">
+                        <label>Company</label>
+                        <select name="companyName" className="form-control" onChange={handleChange}>
+                            {props.companies.map((term) =>
+                                <option value={term.name}>{term.name}</option>
+
+                            )}
+                        </select>
+                    </div>
+
                     <button id="submit" type="submit" className="btn btn-success mt-3">Add New Person</button>
                 </form>
             </div>

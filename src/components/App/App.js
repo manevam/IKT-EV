@@ -14,7 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      companies: []
     };
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
         <main>
           <div className="container">
             <Routes>
-              <Route path={"/users/add"} element={<UserAdd userAdd={this.state.users} onAddUser={this.addUser} />} />
+              <Route path={"/users/add"} element={<UserAdd userAdd={this.state.users} onAddUser={this.addUser} companies={this.state.companies} />} />
               <Route path={"/users"} element={<Users users={this.state.users} />} />
               <Route path={"/companies/add"} element={<CompanyAdd companyAdd={this.state.companies} onAddCompany={this.addCompany} />} />
               <Route path={"/companies"} element={<Companies companies={this.state.companies} />} />
@@ -49,8 +50,7 @@ class App extends Component {
     UserService.getUsers()
       .then((data) => {
         this.setState({
-          users: data.data,
-          companies: data.data
+          users: data.data
         })
       });
   }
@@ -61,22 +61,22 @@ class App extends Component {
         this.loadUsers();
       })
   }
+
   loadCompanies = () => {
     CompanyService.getCompanies()
-        .then((data) => {
-          this.setState({
-            companies: data.data
-          })
-        });
+      .then((data) => {
+        this.setState({
+          companies: data.data
+        })
+      });
   }
 
   addCompany = (companyName, companyEmail) => {
     CompanyService.addCompany(companyName, companyEmail)
-        .then(() => {
-          this.loadCompanies();
-        })
+      .then(() => {
+        this.loadCompanies();
+      })
   }
-
 }
 
 export default App;
