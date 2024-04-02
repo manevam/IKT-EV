@@ -8,6 +8,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from '../Header/header';
 import Companies from '../Companies/CompanyList/companies';
 import CompanyAdd from '../Companies/CompanyAdd/companyAdd';
+import CreateEvent from "../Events/EventAdd/CreateEvent";
+import Events from "../Events/EventList/events";
+import eventService from "../../services/eventService";
+import getAllCoordinators from "../Events/getAllCoordinators/getAllCoordinators";
+import data from "bootstrap/js/src/dom/data";
+import GetAllCoordinators from "../Events/getAllCoordinators/getAllCoordinators";
+import EventsPerCompany from "../Events/EventsPerCompany/eventsPerCompany";
+import Attendance from "../Events/EventAttendance/attendance";
 
 class App extends Component {
 
@@ -15,7 +23,9 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
-      companies: []
+      companies: [],
+      events: [],
+      coordinators: []
     };
   }
 
@@ -30,6 +40,11 @@ class App extends Component {
               <Route path={"/users"} element={<Users users={this.state.users} />} />
               <Route path={"/companies/add"} element={<CompanyAdd companyAdd={this.state.companies} onAddCompany={this.addCompany} />} />
               <Route path={"/companies"} element={<Companies companies={this.state.companies} />} />
+              <Route path={"/event"} element={<Events events={this.state.events} />} />
+              <Route path={"/event/create"} element={<CreateEvent onAddEvent={this.addEvent} companies={this.state.companies} />} />
+              <Route path={"/event/coordinators"} element={<GetAllCoordinators coordinators={this.state.coordinators} />} />
+              <Route path={"/event/company"} element={<EventsPerCompany eventsPerCompany={this.state.eventsPerCompany} />} />
+              <Route path={"/event/attendance/:id"} element={<Attendance />} />
             </Routes>
           </div>
         </main>
@@ -44,6 +59,8 @@ class App extends Component {
   fetchData = () => {
     this.loadUsers();
     this.loadCompanies();
+    this.loadEvents();
+    this.loadCoordinators()
   }
 
   loadUsers = () => {
@@ -69,6 +86,31 @@ class App extends Component {
           companies: data.data
         })
       });
+  }
+
+  loadEvents = () => {
+    eventService.getAllEvents()
+        .then((data)=>{
+          this.setState({
+            events: data.data
+          })
+        });
+  }
+
+  loadCoordinators = () => {
+    eventService.getAllCoordinators()
+        .then((data) => {
+          this.setState({
+            coordinators: data.data
+          })
+        });
+  }
+
+  addEvent = (event) => {
+    eventService.createEvent(event)
+        .then(()=>{
+          this.loadEvents();
+        })
   }
 
   addCompany = (companyName, companyEmail) => {
