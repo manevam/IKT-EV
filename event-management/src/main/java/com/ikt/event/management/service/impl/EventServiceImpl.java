@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -39,8 +41,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, Integer companyId, Integer coordinatorId) {
-        Company company = companyRepository.findById(companyId.longValue()).orElseThrow(InvalidCompanyIdException::new);
+    public Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, String companyName, Integer coordinatorId) {
+        Company company = companyRepository.findByName(companyName).orElseThrow(InvalidCompanyIdException::new);
         User coordinator = userRepository.findById(coordinatorId.longValue()).orElseThrow(InvalidPersonIdException::new);
         Event event = new Event(name, venue, event_date, eventType, budget, company, coordinator);
         return eventRepository.save(event);
@@ -68,7 +70,18 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<CoordinatorsOfEventsDto> findAllCoordinators() {
-        return eventRepository.getAllCoordinators();
+        List<CoordinatorsOfEventsDto> allCoordinators = eventRepository.getAllCoordinators();
+        List<CoordinatorsOfEventsDto> distinctCoordinators = new ArrayList<>();
+
+        Set<Long> uniqueCoordinatorIds = new HashSet<>();
+
+        for (CoordinatorsOfEventsDto coordinator : allCoordinators) {
+            if (uniqueCoordinatorIds.add(coordinator.getCoordinatorId())) {
+                distinctCoordinators.add(coordinator);
+            }
+        }
+
+        return distinctCoordinators;
     }
 
 }

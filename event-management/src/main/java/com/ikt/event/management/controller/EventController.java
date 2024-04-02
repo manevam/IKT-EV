@@ -1,10 +1,12 @@
 package com.ikt.event.management.controller;
 
+import com.ikt.event.management.entity.Company;
 import com.ikt.event.management.entity.Event;
 import com.ikt.event.management.repository.views.CoordinatorsOfEventsDto;
 import com.ikt.event.management.repository.views.EventAttendanceDto;
 import com.ikt.event.management.repository.views.NumberOfEventsPerCompanyDto;
 import com.ikt.event.management.service.EventService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +22,21 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping
-    public List<Event> getAllEvents(){
-        return this.eventService.listAll();
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Event>> getAllEvents(){
+        try {
+            List<Event> events = eventService.listAll();
+            return ResponseEntity.ok(events);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/create")
     public ResponseEntity<Event> create(@RequestBody Event event){
-        Event newEvent = this.eventService.create(event.getName(), event.getVenue(), event.getDate(), event.getEventType(), event.getBudget(), event.getCompany().getId().intValue(), event.getCoordinator().getId().intValue());
+        Event newEvent = this.eventService.create(event.getName(), event.getVenue(), event.getDate(), event.getEventType(), event.getBudget(), event.getCompany().getName(), event.getCoordinator().getId().intValue());
         return ResponseEntity.ok(newEvent);
     }
 
