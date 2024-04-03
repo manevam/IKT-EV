@@ -43,6 +43,17 @@ const CompanyAdd = (props) => {
                         />
                     </div>
 
+                    <div className="form-group">
+                        <label htmlFor="companyEmail">Email</label>
+                        <input type="text"
+                            className="form-control"
+                            id="companyEmail"
+                            name="companyEmail"
+                            required
+                            onChange={handleChange}
+                        />
+                    </div>
+
 
                     <button id="submit" type="submit" className="btn btn-success mt-3">Add New Company</button>
                 </form>

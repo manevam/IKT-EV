@@ -6,8 +6,8 @@ const CompanyService = {
     },
     addCompany: (companyName, companyEmail) => {
         return axios.post("/companies/create", {
-            "companyName": companyName,
-            "companyEmail": companyEmail
+            "name": companyName,
+            "email": companyEmail
         });
     },
     getCompany: (companyId) => {
