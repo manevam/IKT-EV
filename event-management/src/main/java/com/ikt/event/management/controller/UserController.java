@@ -1,5 +1,6 @@
 package com.ikt.event.management.controller;
 
+import com.ikt.event.management.entity.Role;
 import com.ikt.event.management.entity.User;
 import com.ikt.event.management.entity.exceptions.InvalidEventIdException;
 import com.ikt.event.management.entity.exceptions.InvalidPersonIdException;
@@ -31,7 +32,8 @@ public class UserController {
                     createUserRequest.getPersonName(),
                     createUserRequest.getPersonEmail(),
                     createUserRequest.getPhoneNumber(),
-                    createUserRequest.getCompanyName()
+                    createUserRequest.getCompanyName(),
+                    createUserRequest.getRole()
             );
             return ResponseEntity.ok(user);
         } catch (Exception e) {
@@ -67,9 +69,10 @@ public class UserController {
     @PostMapping("/{userID}/register")
     public ResponseEntity<String> registerForEvent(@PathVariable Integer userID,
                                                    @RequestParam Integer roleId,
-                                                   @RequestParam Integer eventId) {
+                                                   @RequestParam Integer eventId,
+                                                   @RequestParam(required = false) Role role) {
         try {
-            userService.personRegistrationForEvent(userID, roleId, eventId);
+            userService.personRegistrationForEvent(userID, roleId, eventId, role);
             return ResponseEntity.ok("User registered for event successfully.");
         } catch (InvalidPersonIdException | InvalidRoleIdException | InvalidEventIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
