@@ -3,6 +3,7 @@ package com.ikt.event.management.controller;
 import com.ikt.event.management.entity.Company;
 import com.ikt.event.management.entity.Event;
 import com.ikt.event.management.repository.views.CoordinatorsOfEventsDto;
+import com.ikt.event.management.repository.views.CreateEventDto;
 import com.ikt.event.management.repository.views.EventAttendanceDto;
 import com.ikt.event.management.repository.views.NumberOfEventsPerCompanyDto;
 import com.ikt.event.management.service.EventService;
@@ -35,8 +36,8 @@ public class EventController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Event> create(@RequestBody Event event){
-        Event newEvent = this.eventService.create(event.getName(), event.getVenue(), event.getDate(), event.getEventType(), event.getBudget(), event.getCompany().getName(), event.getCoordinator().getId().intValue());
+    public ResponseEntity<Event> create(@RequestBody CreateEventDto eventDto){
+        Event newEvent = this.eventService.create(eventDto.getName(), eventDto.getVenue(), eventDto.getDate(), eventDto.getEventType(), eventDto.getBudget(), eventDto.getCompanyId(), eventDto.getCoordinatorId());
         return ResponseEntity.ok(newEvent);
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 public interface EventService {
     List<Event> listAll();
 
-    Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, String companyName, Integer coordinatorId);
+    Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, Integer companyName, Integer coordinatorId);
 
     List<NumberOfEventsPerCompanyDto> numEventsPerCompanyReport();
 

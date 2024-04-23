@@ -4,9 +4,15 @@ const eventService = {
     getAllEvents: () => {
         return axios.get("/event/all")
     },
-    createEvent: (event) => {
+    createEvent: (name, venue, date, eventType, budget, companyId, coordinatorId) => {
         return axios.post("/event/create", {
-            "event": event
+            "name":name,
+            "venue":venue,
+            "date":date,
+            "eventType":eventType,
+            "budget":budget,
+            "companyId":companyId,
+            "coordinatorId":coordinatorId
         })
     },
     getEventsPerCompany: () => {

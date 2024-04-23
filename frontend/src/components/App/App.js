@@ -16,6 +16,7 @@ import data from "bootstrap/js/src/dom/data";
 import GetAllCoordinators from "../Events/getAllCoordinators/getAllCoordinators";
 import EventsPerCompany from "../Events/EventsPerCompany/eventsPerCompany";
 import Attendance from "../Events/EventAttendance/attendance";
+import EventAdd from "../Events/EventAdd/eventAdd";
 
 class App extends Component {
 
@@ -41,7 +42,7 @@ class App extends Component {
               <Route path={"/companies/add"} element={<CompanyAdd companyAdd={this.state.companies} onAddCompany={this.addCompany} />} />
               <Route path={"/companies"} element={<Companies companies={this.state.companies} />} />
               <Route path={"/event"} element={<Events events={this.state.events} />} />
-              <Route path={"/event/create"} element={<CreateEvent onAddEvent={this.addEvent} companies={this.state.companies} />} />
+              <Route path={"/event/create"} element={<EventAdd companies={this.state.companies} users={this.state.users} onAddEvent={this.addEvent} />} />
               <Route path={"/event/coordinators"} element={<GetAllCoordinators coordinators={this.state.coordinators} />} />
               <Route path={"/event/company"} element={<EventsPerCompany eventsPerCompany={this.state.eventsPerCompany} />} />
               <Route path={"/event/attendance/:id"} element={<Attendance />} />

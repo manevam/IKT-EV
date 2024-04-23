@@ -41,9 +41,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, String companyName, Integer coordinatorId) {
-        Company company = companyRepository.findByName(companyName).orElseThrow(InvalidCompanyIdException::new);
+    public Event create(String name, String venue, LocalDate event_date, String eventType, Integer budget, Integer companyName, Integer coordinatorId) {
         User coordinator = userRepository.findById(coordinatorId.longValue()).orElseThrow(InvalidPersonIdException::new);
+        Company company = companyRepository.findById(companyName.longValue()).orElseThrow(InvalidCompanyIdException::new);
         Event event = new Event(name, venue, event_date, eventType, budget, company, coordinator);
         return eventRepository.save(event);
     }
