@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const header = (props) => {
     return (
         <header>
+            <div className="landing-page">
             <nav className="navbar navbar-expand-md navbar-fixed" style={{ backgroundColor: "#e3f2fd" }}>
                 <div className="container">
                     <a className="navbar-brand" href="/">Event Management</a>
@@ -26,6 +27,7 @@ const header = (props) => {
                     </div>
                 </div>
             </nav>
+            </div>
         </header>
     )
 }
