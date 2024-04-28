@@ -17,6 +17,7 @@ import GetAllCoordinators from "../Events/getAllCoordinators/getAllCoordinators"
 import EventsPerCompany from "../Events/EventsPerCompany/eventsPerCompany";
 import Attendance from "../Events/EventAttendance/attendance";
 import EventAdd from "../Events/EventAdd/eventAdd";
+import img from "../../1692193299886.jpg"
 
 class App extends Component {
 
@@ -35,7 +36,7 @@ class App extends Component {
       <Router>
         <Header />
         <main>
-          <div className="container">
+          <div className="container landing-page">
             <Routes>
               <Route path={"/users/add"} element={<UserAdd userAdd={this.state.users} onAddUser={this.addUser} companies={this.state.companies} />} />
               <Route path={"/users"} element={<Users users={this.state.users} />} />
