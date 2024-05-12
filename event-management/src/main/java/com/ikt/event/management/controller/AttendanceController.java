@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("api/v1/attendance")
+@RequestMapping("api/v1/mgmt/attendance")
 @RequiredArgsConstructor
 public class AttendanceController {
     private final AttendanceRepository attendanceRepository;

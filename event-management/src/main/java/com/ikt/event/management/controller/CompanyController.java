@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/v1/companies")
+@RequestMapping("/api/v1/mgmt/companies")
 public class CompanyController {
     private final CompanyService companyService;
     private final AttendanceService attendanceService;
@@ -39,16 +39,16 @@ public class CompanyController {
     }
 
     // Get all companies
-    @GetMapping("/all")
-    public ResponseEntity<List<Company>> getAllCompanies() {
-        try {
-            List<Company> companies = companyService.listAll();
-            return ResponseEntity.ok(companies);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Company>> getAllCompanies() {
+//        try {
+//            List<Company> companies = companyService.listAll();
+//            return ResponseEntity.ok(companies);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
     // Get company by ID
     @GetMapping("/{companyId}")

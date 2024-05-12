@@ -15,8 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
             http.authorizeHttpRequests(requests -> {
                 // Always allow to "/access/permitted" without any authentication
-                requests.requestMatchers("/api/v1/users/**").permitAll();
-                requests.requestMatchers("/api/v1/event/**").authenticated();
+                requests.requestMatchers("/api/v1/public/**").permitAll();
+                requests.requestMatchers("/api/v1/mgmt/**").authenticated();
             });
 
             http.httpBasic(Customizer.withDefaults());
