@@ -9,7 +9,8 @@ const UserAdd = (props) => {
         "personName": "",
         "personEmail": "",
         "phoneNumber": "",
-        "companyName": props.companies.length > 0 ? props.companies[0].name : "" // Set default company if available
+        "companyName": props.companies.length > 0 ? props.companies[0].name : "",
+        "role": "USER"
     })
 
     const [formErrors, setFormErrors] = useState({
@@ -54,8 +55,8 @@ const UserAdd = (props) => {
     const OnFormSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            const { personName, personEmail, phoneNumber, companyName } = formData;
-            props.onAddUser(personName, personEmail, phoneNumber, companyName);
+            const { personName, personEmail, phoneNumber, companyName, role } = formData;
+            props.onAddUser(personName, personEmail, phoneNumber, companyName, role);
             navigate("/users");
         }
     }
@@ -117,6 +118,17 @@ const UserAdd = (props) => {
                                     {term.name}
                                 </option>
                             ))}
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Role</label>
+                        <select
+                            name="role"
+                            className="form-control"
+                            onChange={handleChange}>
+                            <option value="USER">User</option>
+                            <option value="ADMIN">Admin</option>
                         </select>
                     </div>
 

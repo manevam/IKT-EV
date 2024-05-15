@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void personRegistrationForEvent(Integer userID, Integer roleID, Integer eventID, Role role) {
+    public void personRegistrationForEvent(Integer userID, Integer eventID, Role role) {
         User user = findById(userID);
 
         Event event = eventRepository.findById(eventID.longValue()).orElseThrow(InvalidEventIdException::new);

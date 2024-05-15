@@ -2,16 +2,16 @@ import axios from '../api/axios';
 
 const CompanyService = {
     getCompanies: () => {
-        return axios.get("/companies/all");
+        return axios.get("/public/companies");
     },
     addCompany: (companyName, companyEmail) => {
-        return axios.post("/companies/create", {
+        return axios.post("/mgmt/companies/create", {
             "name": companyName,
             "email": companyEmail
         });
     },
     getCompany: (companyId) => {
-        return axios.get(`/companies/${companyId}`);
+        return axios.get(`/mgmt/companies/${companyId}`);
     },
 
 }

@@ -13,5 +13,5 @@ public interface UserService {
 
     User create(String personName, String personEmail, String phoneNumber, String companyName, Role role);
 
-    void personRegistrationForEvent(Integer userID, Integer roleID, Integer eventID, Role role);
+    void personRegistrationForEvent(Integer userID, Integer eventID, Role role);
 }

@@ -68,11 +68,10 @@ public class UserController {
 
     @PostMapping("/{userID}/register")
     public ResponseEntity<String> registerForEvent(@PathVariable Integer userID,
-                                                   @RequestParam Integer roleId,
                                                    @RequestParam Integer eventId,
                                                    @RequestParam(required = false) Role role) {
         try {
-            userService.personRegistrationForEvent(userID, roleId, eventId, role);
+            userService.personRegistrationForEvent(userID, eventId, role);
             return ResponseEntity.ok("User registered for event successfully.");
         } catch (InvalidPersonIdException | InvalidRoleIdException | InvalidEventIdException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

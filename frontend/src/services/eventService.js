@@ -2,10 +2,10 @@ import axios from '../api/axios';
 
 const eventService = {
     getAllEvents: () => {
-        return axios.get("/event/all")
+        return axios.get("/public/events")
     },
     createEvent: (name, venue, date, eventType, budget, companyId, coordinatorId) => {
-        return axios.post("/event/create", {
+        return axios.post("/mgmt/event/create", {
             "name":name,
             "venue":venue,
             "date":date,
@@ -16,13 +16,13 @@ const eventService = {
         })
     },
     getEventsPerCompany: () => {
-        return axios.get("/event/company")
+        return axios.get("/mgmt/event/company")
     },
     getAllCoordinators: ()=> {
-        return axios.get("/event/coordinators")
+        return axios.get("/mgmt/event/coordinators")
     },
     getAttendanceForEvent: (id) => {
-        return axios.get(`/event/attendance/${id}`)
+        return axios.get(`/mgmt/event/attendance/${id}`)
     }
 }
 
