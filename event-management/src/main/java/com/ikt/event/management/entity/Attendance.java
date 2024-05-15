@@ -10,11 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Attendance extends BaseEntity{
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    Role attendedAsRole;
-
+    @Enumerated(EnumType.STRING)
+    Role role;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     User personAttended;

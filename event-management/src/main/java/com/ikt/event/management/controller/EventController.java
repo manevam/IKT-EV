@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("api/v1/event")
+@RequestMapping("api/v1/mgmt/event")
 public class EventController {
     private final EventService eventService;
 
@@ -24,16 +24,16 @@ public class EventController {
     }
 
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Event>> getAllEvents(){
-        try {
-            List<Event> events = eventService.listAll();
-            return ResponseEntity.ok(events);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Event>> getAllEvents(){
+//        try {
+//            List<Event> events = eventService.listAll();
+//            return ResponseEntity.ok(events);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
     @PostMapping("/create")
     public ResponseEntity<Event> create(@RequestBody CreateEventDto eventDto){

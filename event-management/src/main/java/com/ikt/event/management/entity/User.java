@@ -4,15 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "_user")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     @Column(nullable = false)
     @Getter
     String name;
@@ -25,16 +22,13 @@ public class User extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "company_id")
     Company company;
+    @Enumerated(EnumType.STRING)
+    Role role;
+    String username;
+    String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "has_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    List<Role> rolesUserHas;
-
-    public User(String userName, String userEmail, String phoneNumber) {
-        rolesUserHas = new ArrayList<>();
+    public User(String userName, String userEmail, String phoneNumber, Role role) {
+        this.role = role;
         this.name = userName;
         this.email = userEmail;
         this.phone_number = phoneNumber;

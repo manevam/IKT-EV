@@ -1,6 +1,6 @@
 package com.ikt.event.management.repository.views;
 
-import com.ikt.event.management.entity.Company;
+import com.ikt.event.management.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +15,5 @@ public class UserRegistrationDto {
     String personEmail;
     String phoneNumber;
     String companyName;
+    Role role;
 }
