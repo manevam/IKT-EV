@@ -15,6 +15,7 @@ import EventsPerCompany from "../Events/EventsPerCompany/eventsPerCompany";
 import Attendance from "../Events/EventAttendance/attendance";
 import EventAdd from "../Events/EventAdd/eventAdd";
 import UserRegisterForEvent from "../Users/UserRegisterForEvent/userRegisterForEvent";
+import Home from "../Home/home";
 
 class App extends Component {
 
@@ -33,27 +34,36 @@ class App extends Component {
             <Router>
                 <Header/>
                 <main>
-                    <div className="container landing-page">
+                    <div className="container">
                         <Routes>
                             <Route path={"/users/add"}
-                                   element={<UserAdd userAdd={this.state.users} onAddUser={this.addUser}
+                                   element={<UserAdd userAdd={this.state.users}
+                                                     onAddUser={this.addUser}
                                                      companies={this.state.companies}/>}/>
                             <Route path={"/users/:userID/register"}
                                    element={<UserRegisterForEvent onRegister={this.registerUserForEvent}
                                                                   events={this.state.events}/>}/>
-                            <Route path={"/users"} element={<Users users={this.state.users}/>}/>
-                            <Route path={"/companies/add"} element={<CompanyAdd companyAdd={this.state.companies}
-                                                                                onAddCompany={this.addCompany}/>}/>
-                            <Route path={"/companies"} element={<Companies companies={this.state.companies}/>}/>
-                            <Route path={"/event"} element={<Events events={this.state.events}/>}/>
+                            <Route path={"/users"}
+                                   element={<Users users={this.state.users}/>}/>
+                            <Route path={"/companies/add"}
+                                   element={<CompanyAdd companyAdd={this.state.companies}
+                                                        onAddCompany={this.addCompany}/>}/>
+                            <Route path={"/companies"}
+                                   element={<Companies companies={this.state.companies}/>}/>
+                            <Route path={"/event"}
+                                   element={<Events events={this.state.events}/>}/>
                             <Route path={"/event/create"}
-                                   element={<EventAdd companies={this.state.companies} users={this.state.users}
+                                   element={<EventAdd companies={this.state.companies}
+                                                      users={this.state.users}
                                                       onAddEvent={this.addEvent}/>}/>
                             <Route path={"/event/coordinators"}
                                    element={<GetAllCoordinators coordinators={this.state.coordinators}/>}/>
                             <Route path={"/event/company"}
                                    element={<EventsPerCompany eventsPerCompany={this.state.eventsPerCompany}/>}/>
-                            <Route path={"/event/attendance/:id"} element={<Attendance/>}/>
+                            <Route path={"/event/attendance/:id"}
+                                   element={<Attendance/>}/>
+                            <Route path={""}
+                                   element={<Home/>}/>
                         </Routes>
                     </div>
                 </main>
@@ -62,14 +72,14 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.fetchData()
+        this.fetchData();
     }
 
     fetchData = () => {
         this.loadUsers();
         this.loadCompanies();
         this.loadEvents();
-        this.loadCoordinators()
+        this.loadCoordinators();
     }
 
     loadUsers = () => {
