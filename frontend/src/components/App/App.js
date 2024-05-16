@@ -25,14 +25,15 @@ class App extends Component {
             users: [],
             companies: [],
             events: [],
-            coordinators: []
+            coordinators: [],
+            isAuthenticated: false
         };
     }
 
     render() {
         return (
             <Router>
-                <Header/>
+                <Header isAuthenticated={this.state.isAuthenticated}/>
                 <main>
                     <div className="container">
                         <Routes>
@@ -44,14 +45,17 @@ class App extends Component {
                                    element={<UserRegisterForEvent onRegister={this.registerUserForEvent}
                                                                   events={this.state.events}/>}/>
                             <Route path={"/users"}
-                                   element={<Users users={this.state.users}/>}/>
+                                   element={<Users users={this.state.users}
+                                                   isAuthenticated={this.state.isAuthenticated}/>}/>
                             <Route path={"/companies/add"}
                                    element={<CompanyAdd companyAdd={this.state.companies}
                                                         onAddCompany={this.addCompany}/>}/>
                             <Route path={"/companies"}
-                                   element={<Companies companies={this.state.companies}/>}/>
+                                   element={<Companies companies={this.state.companies}
+                                                       isAuthenticated={this.state.isAuthenticated}/>}/>
                             <Route path={"/event"}
-                                   element={<Events events={this.state.events}/>}/>
+                                   element={<Events events={this.state.events}
+                                                    isAuthenticated={this.state.isAuthenticated}/>}/>
                             <Route path={"/event/create"}
                                    element={<EventAdd companies={this.state.companies}
                                                       users={this.state.users}
@@ -72,6 +76,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.checkAuthentication();
         this.fetchData();
     }
 
@@ -80,6 +85,11 @@ class App extends Component {
         this.loadCompanies();
         this.loadEvents();
         this.loadCoordinators();
+    }
+
+    checkAuthentication = () => {
+        const isAuthenticated = document.cookie.includes('Basic');
+        this.setState({isAuthenticated});
     }
 
     loadUsers = () => {

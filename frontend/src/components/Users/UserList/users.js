@@ -1,29 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const users = (props) => {
+
+    if (!props.isAuthenticated) {
+        return (
+            <div className="container mt-5">
+                <div className="alert alert-danger" role="alert">
+                    You need to be authenticated to view this page.
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
                 <div className={"table-responsive"}>
                     <table className={"table table-striped"}>
                         <thead>
-                            <tr>
-                                <th scope={"col"}>ID</th>
-                                <th scope={"col"}>Name</th>
-                                <th scope={"col"}>Email</th>
-                            </tr>
+                        <tr>
+                            <th scope={"col"}>ID</th>
+                            <th scope={"col"}>Name</th>
+                            <th scope={"col"}>Email</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {props.users.map((term) => {
-                                return (
-                                    <tr key={term.id}>
-                                        <td>{term.id}</td>
-                                        <td>{term.name}</td>
-                                        <td>{term.email}</td>
-                                    </tr>
-                                )
-                            })}
+                        {props.users.map((term) => {
+                            return (
+                                <tr key={term.id}>
+                                    <td>{term.id}</td>
+                                    <td>{term.name}</td>
+                                    <td>{term.email}</td>
+                                </tr>
+                            )
+                        })}
                         </tbody>
                     </table>
                 </div>
