@@ -17,8 +17,8 @@ public class AttendanceTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(); // Assuming a default constructor exists
-        event = new Event(); // Assuming a default constructor exists
+        user = new User();
+        event = new Event(); 
         attendance = new Attendance();
     }
 
