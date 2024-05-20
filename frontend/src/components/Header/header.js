@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const header = (props) => {
+const header = () => {
     return (
         <header>
             <nav className="navbar navbar-expand-md navbar-fixed" style={{backgroundColor: "#e3f2fd"}}>
@@ -14,11 +14,9 @@ const header = (props) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav ms-auto">
-                            {props.isAuthenticated && (
-                                <li className="nav-item active">
-                                    <Link className="nav-link" to={"/users"}>Users</Link>
-                                </li>
-                            )}
+                            <li className="nav-item active">
+                                <Link className="nav-link" to={"/users"}>Users</Link>
+                            </li>
                             <li className="nav-item active">
                                 <Link className="nav-link" to={"/companies"}>Companies</Link>
                             </li>

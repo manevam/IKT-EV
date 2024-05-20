@@ -30,10 +30,8 @@ const companies = (props) => {
                 <div className="col mb-3">
                     <div className="row">
                         <div className="col-sm-12 col-md-12">
-                            {props.isAuthenticated && (
-                                <Link to={"/companies/add"} className={"btn btn-block btn-success me-3"}>Add new
-                                    company</Link>
-                            )}
+                            <Link to={"/companies/add"} className={"btn btn-block btn-success me-3"}>Add new
+                                company</Link>
                             <Link to={"/"} className={"btn btn-block btn-primary"}>Back</Link>
                         </div>
                     </div>

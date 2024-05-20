@@ -3,16 +3,6 @@ import {Link} from "react-router-dom";
 
 const users = (props) => {
 
-    if (!props.isAuthenticated) {
-        return (
-            <div className="container mt-5">
-                <div className="alert alert-danger" role="alert">
-                    You need to be authenticated to view this page.
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
