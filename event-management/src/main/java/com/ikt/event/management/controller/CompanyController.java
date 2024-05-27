@@ -2,12 +2,14 @@ package com.ikt.event.management.controller;
 
 
 import com.ikt.event.management.entity.Company;
+import com.ikt.event.management.entity.Rating;
 import com.ikt.event.management.entity.exceptions.InvalidCompanyIdException;
 import com.ikt.event.management.repository.views.AllTimeAttendanceDto;
 import com.ikt.event.management.repository.views.AverageAttendancePerCompanyDto;
 import com.ikt.event.management.repository.views.CreateCompanyDto;
 import com.ikt.event.management.service.AttendanceService;
 import com.ikt.event.management.service.CompanyService;
+import com.ikt.event.management.service.RatingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,12 @@ public class CompanyController {
     private final CompanyService companyService;
     private final AttendanceService attendanceService;
 
-    public CompanyController(CompanyService companyService, AttendanceService attendanceService) {
+    private final RatingService ratingService;
+
+    public CompanyController(CompanyService companyService, AttendanceService attendanceService, RatingService ratingService) {
         this.companyService = companyService;
         this.attendanceService = attendanceService;
+        this.ratingService = ratingService;
     }
 
     // Create a new company
@@ -85,5 +90,17 @@ public class CompanyController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+
+    @PostMapping("/{id}/rate")
+    public ResponseEntity<Company> rateCompany(@PathVariable Integer id,
+                              @RequestBody Integer rating) {
+        Company company = this.companyService.findById(Long.valueOf(id));
+        Rating rating1 = this.ratingService.addRating(rating);
+        List<Rating> companyRatings = company.getRatings();
+        companyRatings.add(rating1);
+        this.companyService.updateRatings(id, companyRatings);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }

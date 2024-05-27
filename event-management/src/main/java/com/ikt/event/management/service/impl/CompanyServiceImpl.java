@@ -1,6 +1,7 @@
 package com.ikt.event.management.service.impl;
 
 import com.ikt.event.management.entity.Company;
+import com.ikt.event.management.entity.Rating;
 import com.ikt.event.management.entity.exceptions.InvalidCompanyIdException;
 import com.ikt.event.management.repository.CompanyRepository;
 import com.ikt.event.management.service.AttendanceService;
@@ -33,5 +34,12 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company findById(Long id) {
         return companyRepository.findById(id).orElseThrow(InvalidCompanyIdException::new);
+    }
+
+    @Override
+    public Company updateRatings(Integer id, List<Rating> ratings) {
+        Company company = this.findById(Long.valueOf(id));
+        company.setRatings(ratings);
+        return this.companyRepository.save(company);
     }
 }
