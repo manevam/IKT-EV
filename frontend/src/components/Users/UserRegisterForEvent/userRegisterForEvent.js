@@ -4,8 +4,8 @@ import {useParams, Link} from 'react-router-dom';
 const UserRegisterForEvent = ({onRegister, events}) => {
 
     const {userID} = useParams();
-    const [selectedEvent, setSelectedEvent] = useState('');
-    const [selectedRole, setSelectedRole] = useState('');
+    const [selectedEvent, setSelectedEvent] = useState('1');
+    const [selectedRole, setSelectedRole] = useState('USER');
     const [message, setMessage] = useState('');
     const [formData, setFormData] = useState({
         personName: '',
@@ -30,11 +30,6 @@ const UserRegisterForEvent = ({onRegister, events}) => {
     const OnFormSubmit = (e) => {
         e.preventDefault();
 
-        if (!selectedEvent || !selectedRole) {
-            setMessage('Please select both event and role.');
-            return;
-        }
-
         onRegister(userID, selectedEvent, selectedRole)
             .then(() => {
                 setMessage('User registered for event successfully.');
@@ -50,7 +45,6 @@ const UserRegisterForEvent = ({onRegister, events}) => {
                 setMessage(`Error: ${error.message}`);
             });
     };
-
 
     return (
         <div className="row mt-5">
@@ -114,7 +108,7 @@ const UserRegisterForEvent = ({onRegister, events}) => {
             </div>
             {message && <p>{message}</p>}
         </div>
-    )
-}
+    );
+};
 
 export default UserRegisterForEvent;

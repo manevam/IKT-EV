@@ -112,7 +112,7 @@ class App extends Component {
     }
 
     registerUserForEvent = (userID, eventId, role) => {
-        UserService.registerForEvent(userID, eventId, role)
+        return UserService.registerForEvent(userID, eventId, role)
             .then(() => {
                 this.loadUsers();
             });

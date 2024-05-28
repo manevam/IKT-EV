@@ -17,9 +17,11 @@ const UserService = {
         return axios.get(`/mgmt/users/${userID}`);
     },
     registerForEvent: (userID, eventId, role) => {
-        return axios.post(`/mgmt/users/${userID}/register`, {
-            "eventId": eventId,
-            "role": role
+        return axios.post(`/mgmt/users/${userID}/register`, null, {
+            params: {
+                eventId: eventId,
+                role: role
+            }
         });
     }
 }

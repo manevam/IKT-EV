@@ -22,6 +22,10 @@ const users = (props) => {
                                     <td>{term.id}</td>
                                     <td>{term.name}</td>
                                     <td>{term.email}</td>
+                                    <td className={"text-center"}>
+                                        <a title="Register Attendance" className={"btn btn-primary"}
+                                           href={`/users/${term.id}/register`} >Register Attendance</a>
+                                    </td>
                                 </tr>
                             )
                         })}
